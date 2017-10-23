@@ -73,7 +73,7 @@ public class LibraryInterfaces {
         return result;
     }
 
-    public Predicate<String> getAcceptedPredicate(boolean defaultMethodsEnabled) {
+    public Predicate<String> getAcceptedPredicate() {
         return className -> {
             if (className.endsWith("$"))
                 className = className.substring(0, className.length() - 1);
