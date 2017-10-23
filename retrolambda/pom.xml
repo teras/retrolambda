@@ -10,7 +10,9 @@
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
+    <groupId>com.panayotis</groupId>
     <artifactId>retrolambda</artifactId>
+    <version>2.5.2-cm</version>
     <packaging>jar</packaging>
 
     <dependencies>
