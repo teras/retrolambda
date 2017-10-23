@@ -73,8 +73,21 @@ public class LibraryInterfaces {
         return result;
     }
 
-    public Predicate<String> getIgnoreLibraryPredicate() {
-        return className -> !resolvedInterfaces.contains(className);
+    public Predicate<String> getAcceptedPredicate(boolean defaultMethodsEnabled) {
+        return className -> {
+            if (className.endsWith("$"))
+                className = className.substring(0, className.length() - 1);
+            /**
+             * Default implementation classes will be emitted only when this
+             * class appears in the current classes location, not inside the
+             * library classpath. It is the library responsibility to provide
+             * default implementation classes for itself. Thus the
+             * implementation classes will be emitted only once, when the
+             * library is (possibly) downgraded, and not every time the library
+             * is consumed by any other project.
+             */
+            return !resolvedInterfaces.contains(className);
+        };
     }
 
     private byte[] getBytes(InputStream in) {

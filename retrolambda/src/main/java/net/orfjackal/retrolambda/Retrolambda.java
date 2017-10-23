@@ -46,7 +46,7 @@ public class Retrolambda {
 
         ClassAnalyzer analyzer = new ClassAnalyzer();
         OutputDirectory outputDirectory = new OutputDirectory(outputDir);
-        outputDirectory.setClassNamePredicate(analyzer.getLibraryInterfaces().getIgnoreLibraryPredicate());
+        outputDirectory.setClassNamePredicate(analyzer.getLibraryInterfaces().getAcceptedPredicate(defaultMethodsEnabled));
         Transformers transformers = new Transformers(bytecodeVersion, defaultMethodsEnabled, analyzer);
         LambdaClassSaver lambdaClassSaver = new LambdaClassSaver(outputDirectory, transformers);
 

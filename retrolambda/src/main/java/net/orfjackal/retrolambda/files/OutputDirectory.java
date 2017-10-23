@@ -24,8 +24,9 @@ public class OutputDirectory {
             return;
         }
         ClassReader cr = new ClassReader(bytecode);
-        if (classNamePredicate == null || classNamePredicate.test(cr.getClassName())) {
-            Path relativePath = outputDir.getFileSystem().getPath(cr.getClassName() + ".class");
+        String classname = cr.getClassName();
+        if (classNamePredicate == null || classNamePredicate.test(classname)) {
+            Path relativePath = outputDir.getFileSystem().getPath(classname + ".class");
             writeFile(relativePath, bytecode);
         }
     }
